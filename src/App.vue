@@ -19,6 +19,7 @@
             <button @click="removeInputColor" id="remove" v-if="colors.length > 2"></button>
           </transition>
         </div>
+        <button @click="generateRandomColor">Random</button>
       </div>
     </div>
   </div>
@@ -70,6 +71,13 @@ export default {
             this.colors.splice(i, 1);
             break;
           }
+        }
+      }
+    },
+    generateRandomColor(){
+      for(let i = 0; i < this.colors.length; i++){
+        if(this.colors[i].disabled === false){
+          this.colors[i].hex = this.randomHexcolor();
         }
       }
     },
@@ -236,8 +244,22 @@ button {
 }
 
 /* Button group of Add/Remove/Random */
+.button-group{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
 .button-group button {
   border-radius: 10px;
+}
+
+.button-group > div > button:first-of-type{
+  margin-right: 5px;
+}
+
+.button-group > div > button{
+  padding: 15px 20px;
 }
 
 .button-group button:hover {
